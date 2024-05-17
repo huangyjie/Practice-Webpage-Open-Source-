@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>随机调座位</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        td {
+            border: 1px solid rgb(255, 13, 13);
+            width: 10%;
+            height: 60px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        #toggleButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #c91414;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.1s ease-in-out;
+        }
+
+        #toggleButton:hover {
+            background-color: #0056b3;
+        }
+
+        .bold-cell {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <table id="seat-table">
+        <!-- Add rows and columns dynamically with JavaScript -->
+    </table>
+
+    <button id="toggleButton" onclick="toggleRandomization()">开始/暂停随机分座位</button>
+
+    <script>
+        let isRandomizing = false;
+        let randomInterval;
+
+        function toggleRandomization() {
+            isRandomizing = !isRandomizing;
+            const toggleButton = document.getElementById('toggleButton');
+
+            if (isRandomizing) {
+                toggleButton.textContent = "暂停随机分座位";
+                randomizeSeats(); // 开始随机分座位
+                randomInterval = setInterval(randomizeSeats, 0.1); // 每秒随机分座位
+            } else {
+                toggleButton.textContent = "开始随机分座位";
+                clearInterval(randomInterval); // 暂停随机分座位
+            }
+        }
+
+        function randomizeSeats() {
+            // Generate a list of names from the provided text file
+            fetch('names.txt')
+                .then(response => response.text())
+                .then(data => {
+                    const names = data.trim().split('\n');
+                    const table = document.getElementById('seat-table');
+                    table.innerHTML = ''; // Clear existing table
+
+                    const numRows = 6;
+                    const seatsPerRow = 10;
+
+                    for (let i = 0; i < numRows; i++) {
+                        const row = table.insertRow(i);
+                        for (let j = 0; j < seatsPerRow; j++) {
+                            const cell = row.insertCell(j);
+                            if (i === numRows - 1 && j >= seatsPerRow - 2) {
+                                // Add bold class to the last row's last two cells
+                                cell.classList.add('bold-cell');
+                            }
+                            if (names.length > 0) {
+                                const randomIndex = Math.floor(Math.random() * names.length);
+                                const randomName = names[randomIndex];
+                                cell.innerHTML = randomName;
+                                names.splice(randomIndex, 1); // Remove the used name
+                                // 去除单元格的背景颜色和文字颜色
+                                cell.style.backgroundColor = '';
+                                cell.style.color = '';
+                            }
+                        }
+                    }
+                });
+        }
+    </script>
+</body>
+</html>

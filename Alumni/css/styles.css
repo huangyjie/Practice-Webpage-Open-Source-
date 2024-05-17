@@ -1,0 +1,157 @@
+/* Resetting default margin and padding */
+body, h2, form {
+    margin: 0;
+    padding: 0;
+}
+
+/* Styling form container */
+.form-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Hover effect on form container */
+.form-container:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling form elements */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="password"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="password"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #6bb9f0;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Styling form heading */
+h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+/* Styling form messages */
+#message,
+#queryResult {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Styling form messages colors */
+#message {
+    background-color: #dff0d8;
+    border: 1px solid #d6e9c6;
+    color: #3c763d;
+}
+
+#queryResult {
+    background-color: #d9edf7;
+    border: 1px solid #bce8f1;
+    color: #31708f;
+}
+
+/* Popup container */
+#popupContainer {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+/* Popup content */
+#popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #444;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    animation: popupAnimation 0.1s ease forwards;
+    color: white; /* Text color */
+}
+
+/* Popup animation */
+@keyframes popupAnimation {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Styling photo container */
+#photo-container {
+    margin-top: 50px;
+    text-align: center;
+}
+
+/* Styling photo */
+#photo-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+/* Hover effect on photo */
+#photo-container img:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Click to enlarge effect */
+#photo-container img.enlarged {
+    transform: scale(1.5);
+}

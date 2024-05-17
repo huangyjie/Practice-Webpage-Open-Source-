@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>同学录</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>同学录</h2>
+        <form id="classmateForm">
+            <label for="name">姓名:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="birthdate">生日:</label>
+            <input type="date" id="birthdate" name="birthdate" required>
+
+            <label for="gender">性别:</label>
+            <select id="gender" name="gender">
+                <option value="男">男</option>
+                <option value="女">女</option>
+                <option value="NULL">保密</option>
+            </select>
+
+            <label for="age">年龄:</label>
+            <input type="text" id="age" name="age">
+
+            <label for="zodiac">星座:</label>
+            <select id="zodiac" name="zodiac">
+                <option value="保密">保密</option>
+                <option value="白羊">白羊</option>
+                <option value="金牛">金牛</option>
+                <option value="双子">双子</option>
+                <option value="巨蟹">巨蟹</option>
+                <option value="狮子">狮子</option>
+                <option value="处女">处女</option>
+                <option value="天秤">天秤</option>
+                <option value="天蝎">天蝎</option>
+                <option value="射手">射手</option>
+                <option value="摩羯">摩羯</option>
+                <option value="水平">水平</option>
+                <option value="双鱼">双鱼</option>
+            </select>
+
+            <label for="blood_type">血型:</label>
+            <select id="blood_type" name="blood_type">
+                <option value="NULL">保密</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="AB">AB</option>
+                <option value="O">O</option>
+                
+            </select>
+
+            <label for="qq">QQ:</label>
+            <input type="text" id="qq" name="qq">
+
+            <label for="phone">电话:</label>
+            <input type="tel" id="phone" name="phone">
+
+            <label for="message">好友留言:</label>
+            <textarea id="message" name="message"></textarea>
+
+            <label for="submit_code">提交码:</label>
+            <input type="password" id="submit_code" name="submit_code" required>
+
+            <input type="submit" value="提交">
+        </form>
+        <div id="message"></div> <!-- 用于显示提交结果的区域 -->
+
+        <h2>查询留言</h2>
+        <form id="queryForm">
+            <label for="query_code">提交码:</label>
+            <input type="password" id="query_code" name="query_code" required>
+
+            <input type="submit" value="查询">
+        </form>
+        <div id="queryResult"></div> <!-- 用于显示查询结果的区域 -->
+    </div>
+    <div id="popupContainer">
+        <div id="popup">
+            <p>提交成功！</p>
+        </div>
+    </div>
+    <div id="photo-container">
+        <img id="photo" src="byz.png" alt="照片">
+    </div>       
+    <script src="./js/script.js"></script>
+</body>
+</html>

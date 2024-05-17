@@ -1,0 +1,75 @@
+/* 共用样式 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px; /* 调整圆角 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 增加阴影效果 */
+    width: 320px; /* 调整宽度 */
+    margin: 40px auto; /* 增加顶部和底部边距 */
+}
+
+h2 {
+    margin-top: 0;
+    margin-bottom: 20px; /* 增加标题底部间距 */
+    color: #333;
+    text-align: center;
+    font-size: 24px; /* 增加字体大小 */
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px; /* 增加标签底部间距 */
+    color: #666;
+    font-size: 14px; /* 增加字体大小 */
+}
+
+input[type="text"],
+input[type="password"],
+input[type="submit"] {
+    width: 100%;
+    padding: 12px; /* 增加内边距 */
+    margin-bottom: 12px; /* 增加底部间距 */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px; /* 增加字体大小 */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* 增加过渡效果 */
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #4CAF50; /* 聚焦时边框颜色 */
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* 聚焦时阴影效果 */
+    outline: none; /* 去除默认的聚焦外框 */
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    /* 悬停效果 */
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+    transform: scale(1.05); /* 缩放效果 */
+}
+
+input[type="submit"]:active {
+    background-color: #3e8e41; /* 点击时背景颜色 */
+    transform: scale(1.02); /* 点击时缩放效果 */
+}
