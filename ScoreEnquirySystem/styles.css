@@ -1,0 +1,159 @@
+#js_send_sms_btn{
+    display:inline-block;
+    height:24px;
+    width:80px;
+    text-align:center;
+    cursor:pointer;
+    border:1px solid #000;
+    border-radius:2px;
+    background:#ebebeb;
+}
+.vip-tip-info{
+    margin: 30px 0 20px;
+    font-size: 14px;
+}
+.vip-tip-info img {
+    max-width:100%;
+}
+.warning-info{
+    text-align:center;
+    padding:10px;
+    color:red;
+}
+/* Reset CSS */
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+/* Page Layout */
+.box-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+}
+
+.header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.banner {
+    font-size: 24px;
+}
+
+.banner-notice {
+    font-size: 14px;
+}
+
+.body {
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.form-box {
+    margin-bottom: 20px;
+}
+
+.q-c-table {
+    width: 100%;
+}
+
+.q-c-row {
+    padding: 10px 0;
+}
+
+.q-c-field-title {
+    width: 20%;
+    font-weight: bold;
+}
+
+.q-c-filed-input {
+    width: 50%;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #555;
+}
+
+/* Form Styling */
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.required {
+    color: red;
+    margin-right: 5px;
+}
+
+.validform-checktip {
+    color: green;
+}
+
+/* Footer */
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .box-container {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .q-c-field-title, .q-c-filed-input {
+        width: 100%;
+    }
+}
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* Page Layout */
+.box-container {
+    min-height: 100%;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.body {
+    padding-bottom: 50px; /* Adjust this value as needed */
+    /* The rest of your styles */
+}
+
+/* Footer */
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+
+}
