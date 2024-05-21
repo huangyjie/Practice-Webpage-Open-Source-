@@ -1,0 +1,461 @@
+Version history - highlights
+============================
+
+
+v1.5.2.2110??
+-------------
+   - Add --dns_hints, to help upagekite connectors
+
+
+v1.5.2.201011
+-------------
+   - Fix the bundled CA certificate for Sectigo
+
+
+v1.5.2.200725
+-------------
+   - Make --ca_certs no longer part of --defaults
+   - Disable CA certificate checking in the distant future
+   - Try harder to survive OpenSSL write-retry errors on backend
+
+
+v1.5.2.200603
+-------------
+   - Fix some TLS connection instability on old/embedded devices
+   - Fix bad select() behaviour (Windows)
+
+
+v1.5.2.200531
+-------------
+   - Update bundled CA Root certs
+   - Avoid hanging TunnelManager if DNS updates never complete
+   - Remove automated crash reports, it is a privacy leak nobody uses
+   - Python3 fixes for built-in HTTPD
+   - Further narrow the disconnect/keepalive logic
+
+v1.5.2.200513
+-------------
+   - Remove obsolete finger, httpfinger and Minecraft protocols
+   - Add working front-end support for XMPP tunnels
+   - Make the auto-keepalive logic simpler and hopefully more robust
+   - Depend on pySocksipychain 2.1.2+, to pick up SSL fixes
+   - The single-file pagekite.py bundle now supports Python 2.7 and 3.x
+   - Document the forgotten `unknown` backend-of-last-resort feature
+
+
+v1.5.1.200424
+-------------
+   - This merges release (v1.0.1): performance and efficiency!
+   - Create ping.pagekite fast-path in dedicated thread
+   - Make select loop timing and read sizes configurable, tweak defaults
+   - Remove 0.4.x flow-control, fix major bugs in current flow control code
+   - Fix locking-related deadlocks under PyPy
+   - Added --watchdog=N, to self-reap locked up processes
+   - Disabled old ssl workarounds on modern versions of Python (broke PyPy)
+
+v1.5.0.200327
+-------------
+   - Allow loading frontend IP list from a file instead of using DNS
+   - Avoid crash if getsockname() fails
+   - Python 3 bugfix: Fixed text wizard UI
+   - Support for Python 3.8, more misc Python 3 fixes
+
+
+v1.5.0.191126
+-------------
+   - FIRST RELEASE which supports Python 3; default is still 2.7 though.
+   - Bump versions: New Dev Is Happening! Also, breaking compatibility...
+   - Dropped protocols: finger, httpfinger, minecraft
+   - Dropped support: Python 2.6 and below probably no longer work.
+   - Fix a few minor buglets
+   - Added experimental support for relay connections over websockets
+   - Debian: improve .deb config samples
+   - Improve errors/feedback if config is unwritable during signup, add, etc.
+   - Added +proxyproto: HAProxy PROXY (v1) protocol support at the backend
+   - Added --loglevel=N, massage logging & defaults to be more user friendly
+
+
+v1.0.0.190225  2019.02.25
+-------------
+   - Call this 1.0, change versioning schemes. We're pretty stable!
+   - UI: Made relay capability description and quota report less confusing
+   - BE: Many refinements to the front-end relay selection algorithm
+   - BE: Implement exponential fallback for DDNS update failures
+   - BE: Fix IP address leak in BE offline page, fix &-encoding in URL
+   - FE: Add --ratelimit_ips= , for eliminating phishing once and for all
+   - FE: Augmented --authdomain= so it supports external authentication apps
+   - FE: Added --authfail_closed, to avoid failing open if tunnel auth is broken
+   - FE: Implement --overload= and friends.
+   - Debian: Make it easy to use alternate Python for daemon (see init script)
+   - HTTPD: Add support for file uploads, new flags: +uploads and +ul_filenames
+   - HTTPD: Implement a PhotoBackup server, new flags: +photobackup
+
+
+v0.5.9.3    2018.01.24
+--------
+   - Fix problems with setting CA cert location within wizard
+   - Add workaround to cope with broken CA cert configurations
+
+
+v0.5.9.2    2018.01.23
+--------
+   - Improve UI and provide debugging hints when failing to connect
+   - Remove incorrect use of assert()
+
+
+v0.5.9.1    2017.12.09  (same as 0.5.9a)
+--------
+   - Adjust tunnel ping frequency on disconnect, to cope with bad firewalls
+   - Add --keepalive for manual tunnel ping frequency configuration
+   - Workaround Debian (and others) distrusting StartCOM issued certificates
+   - Allow multiple --errorurl arguments for per-domain customization
+   - Fix loopback (local backends on a frontend)
+
+
+v0.5.9      2016.11.18
+------
+   - CRITICAL: Fix how we load CA Certificates
+   - Add --fe_nocertcheck for insecure (obfuscation-only) TLS connections
+   - Add --whitelabel and --whitelabels for auto-configuring default
+     settings for users of the pagekite.net white-label service
+   - Remove --jakenoia, it wasn't documented anywhere and didn't really work
+   - Advertise relay overload, consider during "Ping" evaluation
+   - Create vipagekite helper for safely editing configs
+
+v0.5.8f     2016.11.18
+-------
+   - CRITICAL: Fix how we load CA Certificates  (backport from v0.5.9)
+   - Minor back-ported bugfixes
+
+v0.5.6f     2016.11.18
+-------
+   - CRITICAL: Fix how we load CA Certificates  (backport from v0.5.9)
+
+
+v0.5.8e     2016.03.02
+-------
+   - Fix dynamic DNS update bug which would advertise too many IPs
+   - Enable versioned DNS frontend lookups in default settings
+   - Fix server ping logic (broken in 0.5.8a)
+
+
+v0.5.8b     2016.02.16
+-------
+   - Fix SSL3_WRITE_PENDING errors with recent OpenSSL versions
+   - Make signup e-mail regexp less strict (rely on server to check)
+   - Change iframe links to use https:// by default
+
+
+v0.5.8a     2015.10.16
+-------
+   - Speed up startup by pinging relays in parallel
+   - Attempt to fix infinite loop when using epoll
+   - Misc. crashers avoided, including in log code on disk full
+   - Fix multiple TunnelManager crashes which would prevent reconnection
+
+
+v0.5.7b     2015.09.15
+-------
+   - Allow legacy SSL support with --tls_legacy
+   - Added --auththreads=N to tune size of authentication thread pool
+   - Improve automated regression testing to test older versions too
+
+
+v0.5.7a     2015.09.06
+-------
+   - Security: Drop SSLv2 and SSLv3 support from the front-end!
+   - Fix permissions bug in Debian logrotate script
+
+
+v0.5.6e     (not released)
+-------
+   - HTTPS Back-end generates TLSv1 Internal Error alerts if server is down
+   - Added --accept_acl_file=/... for mitigating frontend abuse and DDoS.
+
+
+v0.5.6d     2013.06.14
+-------
+   - Fixed bug in proxy and Tor support
+
+
+v0.5.6b,c   2013.05.24
+---------
+   - Fixed bug where PageKite would not recover from network errors
+   - Fixed IPv6 frontend selection behavior
+   - Avoid duplicate connection woes when a frontend has multiple IPs
+   - Fixed incorrect frontend certificate priority (bogus sorting)
+   - Fixed loopback tunnel bugs introduced by new FE selection
+
+
+v0.5.6a  2013.03.18
+-------
+   - Added default privacy-friendly robots.txt to built-in HTTPD.
+   - Fixed bugs in DNS update logic
+   - Improved frontend selection algorithm to fail back to faster hosts
+   - Improved frontend selection algorithm to disconnect unused tunnels
+   - Fixed major front-end memory leak
+   - Started measuring round-trip-times within tunnels
+   - Fixed multiple bugs in frontend quota rechecking code.
+
+
+v0.5.5   2013.02.01
+------
+   - Fixed broken internal buffered byte counter
+   - Log and allow monitoring of tunnel round-trip-times
+   - Minecraft protocol support at the frontend
+   - Fixed connection bug: native Python SSL + no SSL on front-end = fail
+   - Dropped support for the insecure SSLv2
+
+
+v0.5.4   2012.11.29
+------
+   - Improved --proxy argument handling to do chains properly
+   - Added --client_acl and --tunnel_acl
+   - Fixed bug in --pemfile
+   - Fixed built-in HTTPS server's silly incompatibility with SNI.
+   - Added --selfsign for easily enabling self-signed HTTPS.
+   - Fixed behavior of --remove and --disable for nonexistant kites.
+
+
+v0.5.2, v0.5.3
+--------------
+   - Forgot to document these, oops.
+
+
+v0.5.1   2012.07.22
+------
+   - Fixed lots and lots of file descriptor leaks.
+   - Added --shell for easier use in a GUI environment.
+
+
+v0.5.0   2012.07.20
+------
+   - Prefer and use epoll() if it is available.
+   - Added better probe diagnostics, using json returns and CORS headers.
+   - Correctly handle and report the new pagekite.net quota dimensions.
+   - Corrected error messages when using an invalid shared secret.
+   - Added support for multiple auth domains at the front-end.
+   - Brought README.md up-to-date
+   - Renamed --backend/--disable_backend to --service_on/--service_off
+   - Allow white-space in the config file and make it more readable
+   - Added: --watch=<LEVEL> for watching tunneled traffic (back-end only)
+   - Deprecated: --reloadfile, --delete_backend
+   - Refactored and rewrote built-in manual and man page.
+   - Added support for Flash socket-policy responses (open policy)
+   - Support kites over IPv6.
+   - Improved HTTP header filtering, now always inserts X-Forwarded-For,
+     added X-Forwarded-Proto and +rawheaders flag for disabling.
+   - Fixed bugs in Loopback tunnels with bad backends
+   - Added URL firewall, +insecure and --insecure to disable it.
+
+
+v0.4.6   2012.01.15
+------
+   - Improved new kite wizard a bit
+   - Added human readable date/time to log output
+   - Cleaned up auto-generated configuration file
+   - Fixed bug in front-end HTTP CONNECT for wild-card TLS endpoints
+   - Behave gracefully when X.pagekite.me is in /etc/hosts as 127.x.x.x
+   - Added proper MOTD handling
+
+
+v0.4.5   2011.08.22
+------
+   - Finalize and document finger and IRC support.
+   - Support wild-card backends (*.domain.com).
+
+
+v0.4.4   2011.08.02
+------
+   - Major code reorganization, split giant pagekite.py into multiple
+     parts, and spawned two spin-off projects:
+      - http://pagekite.net/wiki/Floss/PyBreeder/
+      - http://pagekite.net/wiki/Floss/PySocksipyChain/
+   - Made the built-in HTTPD reply to http://localhost:port/ requests.
+   - Added back-end flags:
+      - Added +rewritehost
+      - Renamed +user/ to +password/
+      - Allow +options after the domain name
+   - Experimental support for the finger and IRC protocols.
+   - Experimental setuptools, .deb and .rpm packaging rules.
+   - Experimental --remoteui to facilitate development of GUIs.
+
+
+v0.4.3   2011.05.26
+------
+   - UI is more colorful!
+   - UI is more friendly on Windows and in OS X transient windows.
+   - UI now gives useful feedback in front-end mode as well.
+   - UI now reports https:// URLs when they are available.
+   - Added --add, --only, --remove and --disable for manipulating your
+     kite configuration from the command-line.
+   - HTTP Basic Auth can now be required for any HTTP back-end.
+   - Back-ported from 0.3.20:
+      - Fixed more file-descriptor leaks.
+      - Fixed a bug in initial handshake when front-end was using python's SSL.
+      - Fixed infinite recursion bug in loopback tunnels.
+      - Made auxillary threads handle exceptions more gracefully.
+      - Made connection hand-shake more verbose (prep. better error reporting).
+      - Added --debugio flag for low-level debugging.
+
+
+v0.4.2   2011.05.13
+------
+   - Fixed some file descriptor leaks
+   - Added name-based virtual server and virtual file tree to built in HTTPD.
+   - Revamped the command-line short-cuts to follow the common Unix
+     'action source source ... destination' pattern.
+
+
+v0.4.1   2011.05.05
+------
+   - Branched major revision 0.4.x from stable 0.3.x.
+   - Much improved interactive console user interface and shortcut feature.
+     To disable the interface, use --nullui.
+   - Added built-in static HTTP daemon.
+
+
+v0.3.17  2011.04.20
+-------
+   - Crypto cleanup: better random numbers, clarified code, added timestamps
+     to front-end challenges (limits replay attack window), allowed hardcoding
+     of front-end SSL cert hash in config file.
+   - Fixed hanging SSL connections on front-ends with native termination.
+   - Rapid network switching should work (session-id based disconnects).
+   - Minor flow-control tweaks and fixes.
+   - Fixed a bug where large file transfers could disconnect tunnels.
+   - Fixed some logging issues on Windows.
+
+
+v0.3.16  2011.03.11
+-------
+   - Worked around bug in native Python ssl module which kills busy tunnels.
+   - Fixed lame bug in --all code.
+
+
+v0.3.15  2011.03.03
+-------
+   - Revamped stream EOF handling, fixing many corner case bugs in the process.
+   - Fixed GitHub issue #12
+
+
+v0.3.14  2011.02.11
+-------
+   - Moved fancy error messages to a frame, instead of a redirect.
+   - Added support for catch-all backends (hostname = unknown).
+   - Added timeouts to tunnel and backend connection code to reduce stalling.
+   - Moved tunnel management to separate thread.
+   - Added --rawports=virtual for virtual (HTTP CONNECT only) raw ports.
+
+
+v0.3.13  2011.01.25
+-------
+   - Fixed yet another flow-control problem (bad error handling)
+
+
+v0.3.12  2011.01.21
+-------
+   - Report a config error when the same backend is defined twice.
+   - Don't submit crash reports when misconfigured. *sigh*
+
+
+v0.3.11  2011.01.20
+-------
+   - Removed debugging code to improve privacy.
+   - Reduced memory footprint slightly, especially on the front-end.
+   - Fixed bugs in 3rd party dynamic DNS support, improved docs.
+
+
+v0.3.10  2011.01.15
+-------
+   - BUGFIX: More improvements to IO error handling.
+
+
+v0.3.9   2011.01.05
+------
+   - BUGFIX: 0.3.8 broke Windows connections, this should fix them again.
+   - Re-opens logs on SIGHUP, for compatibility with logrotate.
+   - Tweaked internal CONNECT to work with HTTP/1.1 clients: putty can ssh!
+   - Look for CA Certificates in the rc-file if not found in the host OS.
+   - Added --errorurl for fancier "back-end unavailable" messages.
+   - Better detection of dead tunnels and connection re-establishment.
+
+
+v0.3.8   2011.01.02
+------
+   - Many TLS/SSL fixes:
+      - Works with pyOpenSSL or the default Python 2.6 ssl module.
+      - Can now terminate/unwrap TLS/SSL at the front-end.
+      - Routing support for the old lame SSLv2.
+      - Built-in TLS/SSL works with pyOpenSSL or python 2.6+ ssl. 
+      - TLS tunnels: encryption and FE auth. See --ca_certs and --fe_certname.
+   - Protocol fixes: switching from "magic" request paths to HTTP CONNECT.
+   - Added --noprobes and probe logging at the back-end.
+   - Misc. minor bugfixes.
+
+
+v0.3.7   2010.12.26
+v0.3.6
+------
+   - Added support for the websocket protocols (Upgrade: WebSocket header)
+   - Added support for binding to, and routing by ports as well as protocols
+   - Added time-based routing of non-SNI SSL connections.
+   - Added time-based routing of raw ports (for ssh-after-HTTP).
+   - Added X-Forwarded-For header to for HTTP and WEBSOCKET
+   - The IP address of visiters now gets reported to back-end and logged.
+   - Built-in httpd now based on SimpleXMLRPCServer
+   - Enbled --pemfile, for SSL encrypted admin consoles
+   - Front-ends can now have local (non-tunneled) back-ends
+
+
+v0.3.5   2010.12.15
+------
+   - Misc. minor bugfixes.
+   - Added support for WebDAV and other missing HTTP request methods.
+   - Added some real Yamon variables for monitoring
+   - Log-format normalized a bit, created pagekite_logparse.py.
+   - Bugfix: minor memory leak when target servers are down (BE unavailable).
+   - Bugfix: bad flow-control bug could freeze the select-loop.
+
+
+v0.3.4   2010.11.09
+------
+   - Added basic flow-control to avoid excessive memory use on large file
+     transfers with fast backends and slow upstream pipes.
+
+
+v0.3.3   2010.11.03
+------
+   - Fixed crash report misbehavior on some Python versions.
+
+
+v0.3.2   2010.10.25
+------
+   - HTTP UI now has logs & connection details, and --httppass works.
+   - Anonymized IP addresses in HTTP UI and all logs.
+   - Protocol tweaks: front-end is backwards compatible, back-end is not.
+   - Added support for probe requests, showing status in the UI.
+
+
+v0.3.1   2010.10.14
+v0.3.0
+------
+   * BUG: ValueErrors in invalid configs generated crash report spam.
+   * BUG: Fixed chunking alignment problem. 
+   * BUG: Fixed HTTP header parsing problem
+   - Added support for tunneling through tor, or other socks5 proxies.
+   - Added support for zlib compressed tunnels
+   - Added basic unit-tests!
+   - Added crash report feature and auto-restart on crash.
+ 
+
+v0.2.1   2010.10.12
+------
+   - Added support for --defaults and --settings
+   - Renamed from beanstalks_net.py to pagekite.py
+
+
+v0.2.0   2010.09.22 
+------
+   - First alpha-testing release.
+
