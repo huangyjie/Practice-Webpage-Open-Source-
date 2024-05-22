@@ -3,7 +3,7 @@
 $servername = "localhost"; // 数据库服务器名称
 $username = "root"; // 数据库用户名
 $password = "123456"; // 数据库密码
-$dbname = "survey_db"; // 数据库名称
+$dbname = "wy"; // 数据库名称
 
 // 创建连接
 $conn = new mysqli($servername, $username, $password, $dbname);

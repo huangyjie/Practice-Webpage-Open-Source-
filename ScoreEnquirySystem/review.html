@@ -1,11 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>520快乐250网上的链接别乱点</title>
+    <title>2024年湖北省技能高考技能操作考试成绩查询</title>
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link href="./css/base.css" rel="stylesheet">
+    <link href="./css/popup.css" rel="stylesheet">
+    <style>
+        /* 这里放你自定义的 CSS 样式 */
+    </style>
 </head>
 <body>
-    <h1>520快乐250网上的链接别乱点</h1>
+    <div class="pc">
+        <div class="wd">
+            <div class="header">
+                <img src="http://www.hbea.edu.cn/gkcj2019/images/logo.png">
+            </div>
+        </div>
+        <div class="wd clearfix">
+            <div class="content">
+                <div class="content-left fl">
+                    <div id="ctback">
+                        <div class="gkcj-tit">2024年湖北省技能高考技能操作考试成绩查询结果</div>
+                        <div class="base-info b1">
+                            <table class="base-t">
+                                <tbody>
+                                    <tr>
+                                        <td class="base-td">姓名：</td>
+                                        <td style="width: 168px;"><span id="s_xingming_display"></span></td>
+                                        <td class="base-td">身份证号：</td>
+                                        <td><span id="s_shenfenzhenghao_display"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="base-td">准考证号：</td>
+                                        <td><span id="gkbmh"></span></td>
+                                        <td class="base-td">高考报名号：</td>
+                                        <td><span id="sfzh"></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="score-info">
+                            <table class="score-t">
+                                <tbody>
+                                    <tr>
+                                        <td>科目名称</td>
+                                        <td>科目成绩</td>
+                                    </tr>
+                                    <tr>
+                                        <td>技能应知</td>
+                                        <td id="knowledgeScore">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>技能应会</td>
+                                        <td id="skillScore">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>总分</td>
+                                        <td id="totalScore" class="score-tcolor">0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="fh"><a href="index.html" class="gkcj-btn">返回上级</a></div>
+                    </div>
+                </div>
+                <div class="content-right fr">
+                    <div class="side">
+                        <div class="side-tit">操作说明</div>
+                        <div class="side-c">
+                            <div class="side-c1">1、输入高考报名号、身份证号和验证码，点击查询按钮进行查询。</div>
+                            <div class="side-c2">2、如果输入信息正确，对应考试的成绩信息将会在本页面列出。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wd clearfix">
+            <div class="footer" style="position:absolute;bottom:0;width:1200px;">
+                <div class="ft-l fl">
+                    <div>主办单位：湖北省教育考试院</div>
+                    <div>版权所有：湖北省教育考试院　|　地址：武汉市武昌东湖路147号　|　邮编：430077</div>
+                    <div>ICP备案编号：鄂ICP备17028011号-1</div>
+                </div>
+                <div class="ft-r fr"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const name = urlParams.get('name');
+            const idNumber = urlParams.get('idNumber');
+
+            if (name && idNumber) {
+                document.getElementById('s_xingming_display').textContent = name;
+                document.getElementById('s_shenfenzhenghao_display').textContent = idNumber;
+
+                const examCard = idNumber.slice(-11);
+                document.getElementById('gkbmh').textContent = examCard;
+                document.getElementById('sfzh').textContent = idNumber;
+
+                generateRandomScore();
+            } else {
+                alert('信息不完整，请返回重新输入');
+                window.location.href = 'index.html';
+            }
+        });
+
+        function generateRandomScore() {
+            var minTotalScore = 380;
+            var maxTotalScore = 480;
+            var maxKnowledgeScore = 150;
+            var maxSkillScore = 340;
+
+            var totalScore = Math.floor(Math.random() * (maxTotalScore - minTotalScore + 1)) + minTotalScore;
+            var knowledgeScore = Math.min(totalScore, maxKnowledgeScore, Math.floor(Math.random() * (maxKnowledgeScore + 1)));
+            var skillScore = Math.min(totalScore - knowledgeScore, maxSkillScore);
+            skillScore = Math.min(skillScore, totalScore - knowledgeScore);
+            knowledgeScore = totalScore - skillScore;
+
+            document.getElementById('knowledgeScore').textContent = knowledgeScore;
+            document.getElementById('skillScore').textContent = skillScore;
+            document.getElementById('totalScore').textContent = totalScore;
+        }
+    </script>
 </body>
 </html>

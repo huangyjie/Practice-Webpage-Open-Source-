@@ -5,16 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>成绩查询系统</title>
-    <link rel="icon" type="image/x-icon" href="/Public/static/images/favicon.ico">
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <link href="/Public/Bj/css/custom.css?v=1" rel="stylesheet" type="text/css">
 </head>
 
 <body>
     <header class="header">
         <div class="banner">
-            <h1>2024年湖北省技能高考成绩查询系统</h1>
-        </div>        
+            <h1>2024年XX省技能高考成绩查询系统</h1>
+        </div>
     </header>
     <main class="box-container">
         <section class="body">
@@ -24,7 +22,7 @@
                         <tr>
                             <td class="q-c-row q-c-field-title">姓名</td>
                             <td class="q-c-row q-c-filed-input">
-                                <input name="s_xingming" type="text" placeholder="请输入姓名" required>
+                                <input id="s_xingming" name="s_xingming" type="text" placeholder="请输入姓名" required>
                             </td>
                             <td class="q-c-row q-c-field-tip">
                                 <span class="required">*</span>
@@ -34,14 +32,13 @@
                         <tr>
                             <td class="q-c-row q-c-field-title">身份证号</td>
                             <td class="q-c-row q-c-filed-input">
-                                <input name="s_shenfenzhenghao" type="text" placeholder="请输入身份证号" required>
+                                <input id="s_shenfenzhenghao" name="s_shenfenzhenghao" type="text" placeholder="请输入身份证号" required>
                             </td>
                             <td class="q-c-row q-c-field-tip">
                                 <span class="required">*</span>
                                 <span class="validform-checktip">&nbsp;</span>
                             </td>
                         </tr>
-                        <tr id="jsPicVerifyBox"></tr>
                     </table>
                     <div class="btn-group">
                         <button type="submit" id="yiDunSubmitBtn" class="btn">查询</button>
@@ -52,7 +49,6 @@
             <div class="vip-tip-info">
                 <p>请输入正确的身份证号和姓名进行查询，忘记请联系老师。</p>
             </div>
-            <div id="gradeResults"></div> <!-- 用于显示成绩信息的元素 -->
         </section>
     </main>
 

@@ -9,7 +9,7 @@ if (!empty($name) && !empty($idNumber)) {
     $servername = "localhost";
     $username = "root";
     $password = "123456";
-    $dbname = "grade_system_db"; // Replace with your database name
+    $dbname = "wy"; // Replace with your database name
 
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);

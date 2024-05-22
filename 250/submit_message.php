@@ -59,7 +59,7 @@
             // 检查留言是否为空
             if (!empty($message)) {
                 // 连接MySQL数据库
-                $conn = new mysqli("localhost", "root", "123456", "message_board");
+                $conn = new mysqli("localhost", "root", "123456", "wy");
 
                 // 检查连接是否成功
                 if ($conn->connect_error) {
