@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>股票涨跌模拟</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+        h2 {
+            text-align: center;
+        }
+        input[type="number"],
+        select {
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+        }
+        canvas {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>股票涨跌模拟</h2>
+    <label for="days">模拟天数：</label>
+    <input type="number" id="days" min="1" value="30">
+    <label for="minChange">每日最小涨幅：</label>
+    <input type="number" id="minChange" value="0">
+    <label for="maxChange">每日最大涨幅：</label>
+    <input type="number" id="maxChange" value="10">
+    <label for="chartType">图表类型：</label>
+    <select id="chartType">
+        <option value="line">折线图</option>
+        <option value="bar">柱状图</option>
+        <option value="pie">饼图</option>
+        <option value="doughnut">圆环图</option>
+        <option value="polarArea">极地图</option>
+        <option value="radar">雷达图</option>
+    </select>
+    <button onclick="simulateStock()">开始模拟</button>
+    <div id="result"></div>
+    <canvas id="chart" width="800" height="400"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var chartData = [];
+        var labels = [];
+        var percentageChanges = [];
+        var myChart; // 存储 Chart 实例
+
+        function simulateStock() {
+            var days = parseInt(document.getElementById("days").value);
+            var minChange = parseFloat(document.getElementById("minChange").value);
+            var maxChange = parseFloat(document.getElementById("maxChange").value);
+            var chartType = document.getElementById("chartType").value;
+            var resultElement = document.getElementById("result");
+            resultElement.innerHTML = "";
+
+            if (isNaN(days) || isNaN(minChange) || isNaN(maxChange)) {
+                resultElement.innerHTML = "请输入有效的数字。";
+                return;
+            }
+
+            chartData = [];
+            labels = [];
+            percentageChanges = [];
+
+            var stockPrice = 100; // 初始股价
+            for (var i = 1; i <= days; i++) {
+                var changeProbability = Math.random();
+                var change = changeProbability >= 0.5 ? getRandomArbitrary(minChange, maxChange) : getRandomArbitrary(-maxChange, -minChange);
+                var priceChange = (stockPrice * change) / 100;
+                var percentageChange = ((stockPrice + priceChange - stockPrice) / stockPrice) * 100;
+                stockPrice += priceChange;
+                chartData.push(stockPrice.toFixed(2));
+                labels.push("第 " + i + " 天");
+                percentageChanges.push(percentageChange.toFixed(2));
+            }
+
+            renderChart(chartType);
+        }
+
+        function renderChart(chartType) {
+            if (myChart) {
+                myChart.destroy(); // 销毁之前的图表
+            }
+
+            var ctx = document.getElementById('chart').getContext('2d');
+            var gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, 'rgba(255, 0, 0, 0.2)'); // 红色
+            gradient.addColorStop(1, 'rgba(0, 0, 255, 0.8)'); // 蓝色
+            
+            var backgroundColor = [];
+            for (var i = 0; i < chartData.length; i++) {
+                backgroundColor.push(gradient);
+            }
+
+            var chartConfig = {
+                type: chartType,
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '股票价格',
+                        data: chartData,
+                        backgroundColor: backgroundColor,
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: false
+                            }
+                        }]
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function(tooltipItem, data) {
+                                var label = data.datasets[tooltipItem.datasetIndex].label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += tooltipItem.yLabel + ' 元 (' + percentageChanges[tooltipItem.index] + '%)';
+                                return label;
+                            }
+                        }
+                    }
+                }
+            };
+
+            if (chartType === 'bar') {
+                chartConfig.options.scales.xAxes = [{
+                    stacked: true
+                }];
+                chartConfig.options.scales.yAxes = [{
+                    stacked: true
+                }];
+            }
+
+            myChart = new Chart(ctx, chartConfig);
+        }
+
+        function getRandomArbitrary(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+    </script>
+</body>
+</html>
