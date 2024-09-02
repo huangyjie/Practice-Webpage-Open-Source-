@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我 - 我的个人博客</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>联系我</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">主页</a>
+        <a href="blog.html">博客文章</a>
+        <a href="about.html">关于我</a>
+        <a href="contact.html">联系我</a>
+        
+    </nav>
+
+    <div class="container">
+        <section class="contact">
+            <h2>反馈建议</h2>
+            <div class="qq-contact">
+                <p>有问题或建议？你可以通过下面的链接联系我：</p>
+                <a href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1401466869&website=www.oicqzone.com">添加作者QQ</a>
+                <a href="mailto:huangyujeiyo@gmail.com">发送邮件</a>
+            </div>
+            <form id="contactForm">
+                <input type="text" name="name" placeholder="您的称呼" required>
+                <input type="email" name="email" placeholder="您的邮箱" required>
+                <textarea name="suggestion" rows="5" placeholder="您的建议" required></textarea>
+                <button type="submit">提交建议</button>
+            </form>
+            <div id="message"></div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 huang yu jie. 保留所有权利。</p>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // 阻止表单默认提交
+
+            // 显示“正在提交，请稍等”
+            var messageDiv = document.getElementById('message');
+            messageDiv.textContent = '正在提交，请稍等...';
+
+            // 等待3秒钟后提交表单
+            setTimeout(function() {
+                // 获取表单数据
+                var formData = new FormData(document.getElementById('contactForm'));
+
+                // 使用 fetch API 提交数据
+                fetch('admin/submit_suggestion.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(data => {
+                    // 提交成功后，显示成功消息
+                    messageDiv.textContent = '提交成功！';
+                })
+                .catch(error => {
+                    // 如果出错，显示错误消息
+                    messageDiv.textContent = '提交失败，请重试。';
+                });
+            }, 3000); // 3秒延迟
+        });
+    </script>
+
+</body>
+</html>

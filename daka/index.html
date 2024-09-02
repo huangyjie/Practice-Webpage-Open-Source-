@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学习打卡</title>
+    <link rel="stylesheet" href="WB/main.min.css">
+    <script src="WB/main.min.js"></script>
+    <script src="WB/zh-cn.js"></script>
+    <script src="WB/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: '微软雅黑', Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+        #calendar {
+            width: 95%;
+            max-width: 1000px;
+            margin-bottom: 30px;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        #punchInBtn {
+            display: block;
+            padding: 20px 40px;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            border: none;
+            border-radius: 35px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        #punchInBtn:hover {
+            background: linear-gradient(135deg, #0056b3, #003d80);
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        #punchInBtn:active {
+            background: linear-gradient(135deg, #003d80, #002b60);
+            transform: scale(0.95);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .fc-daygrid-day {
+            transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .fc-daygrid-day:hover {
+            transform: translateY(-5px);
+            background-color: #e0f7fa;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .fc-daygrid-day-number {
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .fc-daygrid-day-top {
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .fc-daygrid-day-top:hover {
+            background-color: #b2ebf2;
+        }
+        .fc-daygrid-day {
+            position: relative;
+        }
+        .punch-count {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            font-size: 16px;
+            color: #007bff;
+            background-color: #ffffff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        #monthNav {
+            display: flex;
+            justify-content: space-between;
+            width: 95%;
+            max-width: 1000px;
+            margin-bottom: 20px;
+        }
+        #prevMonth, #nextMonth {
+            padding: 15px 30px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        #prevMonth:hover, #nextMonth:hover {
+            background: #0056b3;
+            transform: scale(1.1);
+        }
+        #prevMonth:active, #nextMonth:active {
+            background: #003d80;
+            transform: scale(0.95);
+        }
+        #clock {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            background: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        #punchTime {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+        }
+        #musicBall {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #00b6c7, #0c905d);
+            border-radius: 50%;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 24px;
+            color: white;
+            z-index: 1000;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        #musicBall {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #00b6c7, #0c905d);
+            border-radius: 50%;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 24px;
+            color: white;
+            z-index: 1000;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        #musicBall.bounce {
+            animation: bounce 0.6s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        #controls {
+            display: none;
+            position: absolute;
+            bottom: -120px; /* 控制按钮显示在悬浮球下方 */
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        #controls button {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 20px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        #musicBall:hover #controls {
+            display: flex;
+            gap: 10px;
+        }
+        #musicBall:hover {
+            background: radial-gradient(circle, #00b6c7, #0c905d);
+            transform: scale(1.1);
+        }
+        #musicBall:active {
+            background: radial-gradient(circle, #00b6c7, #0c905d);
+            transform: scale(0.95);
+        }
+        #musicControls {
+            position: absolute;
+            bottom: 100px;
+            right: 20px;
+            background: #fff;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .musicControlButton {
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .musicControlButton:hover {
+            background: #0056b3;
+            transform: scale(1.1);
+        }
+        .musicControlButton:active {
+            background: #003d80;
+            transform: scale(0.95);
+        }
+    </style>
+    <script src="WB/scripts.js" defer></script>
+</head>
+<body>
+<div id="monthNav">
+    <button id="prevMonth">上一月</button>
+    <button id="nextMonth">下一月</button>
+</div>
+<div id="calendar"></div>
+<button id="punchInBtn" title="切勿重复打卡">打卡</button>
+<div id="clock"></div>
+<div id="punchTime">已打卡时间: <span id="punchTimeDisplay">暂未打卡</span></div>
+<div id="musicBall">
+    <span>🎵</span>
+</div>
+<div id="musicControls">
+    <button class="musicControlButton" id="prevTrack" title="返回10秒">⏮</button>
+    <button class="musicControlButton" id="playPause" title="暂停">▶</button>
+    <button class="musicControlButton" id="nextTrack" title="快进10秒">⏭</button>
+    <button class="musicControlButton" id="fastForward" title=" 下一首 ">⏩</button>
+    <a href="https://cn.pornhub.com/">好看的</a>
+</div>
+</body>
+</html>
