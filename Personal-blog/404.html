@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>404 - Page Not Found</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #3a3a3a, #1f1f1f);
+            color: #eee;
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 100px;
+            color: #f44336;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #ccc;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #f44336;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            margin: 10px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #d32f2f;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+        }
+    </style>
+    <script>
+        function reloadPage() {
+            location.reload();
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h3>404</h3>
+        <p>Oops! 找不到页面了。</p>
+        <a class="btn" href="index.html">返回首页</a>
+        <button class="btn" onclick="reloadPage()">重新加载</button>
+    </div>
+</body>
+</html>
