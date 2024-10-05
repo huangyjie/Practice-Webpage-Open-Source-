@@ -1,10 +1,10 @@
-/* Universal Reset */
+/* Resetting default margin and padding */
 body, h2, form {
     margin: 0;
     padding: 0;
 }
 
-/* Container for Form */
+/* Styling form container */
 .form-container {
     max-width: 500px;
     margin: 50px auto;
@@ -15,19 +15,23 @@ body, h2, form {
     transition: box-shadow 0.3s ease-in-out;
 }
 
-/* Hover Effect on Container */
+/* Hover effect on form container */
 .form-container:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Form Elements Styling */
+/* Styling form elements */
 label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
 }
 
-input[type="text"], input[type="tel"], input[type="password"], select, textarea {
+input[type="text"],
+input[type="tel"],
+input[type="password"],
+select,
+textarea {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -37,11 +41,14 @@ input[type="text"], input[type="tel"], input[type="password"], select, textarea 
     transition: border-color 0.3s ease-in-out;
 }
 
-input[type="text"]:focus, input[type="tel"]:focus, input[type="password"]:focus, select:focus, textarea:focus {
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="password"]:focus,
+select:focus,
+textarea:focus {
     border-color: #6bb9f0;
 }
 
-/* Submit Button Styling */
 input[type="submit"] {
     background-color: #4CAF50;
     color: white;
@@ -57,21 +64,22 @@ input[type="submit"]:hover {
     background-color: #45a049;
 }
 
-/* Header Styling */
+/* Styling form heading */
 h2 {
     margin-bottom: 20px;
     text-align: center;
     color: #333;
 }
 
-/* Form Message Styling */
-#message, #queryResult {
+/* Styling form messages */
+#message,
+#queryResult {
     margin-top: 20px;
     padding: 10px;
     border-radius: 5px;
 }
 
-/* Message Background and Color */
+/* Styling form messages colors */
 #message {
     background-color: #dff0d8;
     border: 1px solid #d6e9c6;
@@ -84,7 +92,7 @@ h2 {
     color: #31708f;
 }
 
-/* Popup Container */
+/* Popup container */
 #popupContainer {
     display: none;
     position: fixed;
@@ -96,7 +104,7 @@ h2 {
     z-index: 9999;
 }
 
-/* Popup Content */
+/* Popup content */
 #popup {
     position: absolute;
     top: 50%;
@@ -110,7 +118,7 @@ h2 {
     color: white; /* Text color */
 }
 
-/* Popup Animation */
+/* Popup animation */
 @keyframes popupAnimation {
     0% {
         transform: translate(-50%, -50%) scale(0.5);
@@ -122,13 +130,13 @@ h2 {
     }
 }
 
-/* Photo Container Styling */
+/* Styling photo container */
 #photo-container {
     margin-top: 50px;
     text-align: center;
 }
 
-/* Photo Styling */
+/* Styling photo */
 #photo-container img {
     max-width: 100%;
     height: auto;
@@ -138,12 +146,12 @@ h2 {
     cursor: pointer;
 }
 
-/* Hover Effect on Photo */
+/* Hover effect on photo */
 #photo-container img:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
 
-/* Click to Enlarge Effect */
+/* Click to enlarge effect */
 #photo-container img.enlarged {
     transform: scale(1.5);
 }
