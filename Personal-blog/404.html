@@ -7,10 +7,9 @@
     <title>404 - Page Not Found</title>
     <style>
         body {
-            background: linear-gradient(135deg, #3a3a3a, #1f1f1f);
-            color: #eee;
-            font-family: 'Arial', sans-serif;
-            font-size: 16px;
+            background: linear-gradient(135deg, #2b2b2b, #121212);
+            color: #f5f5f5;
+            font-family: 'Segoe UI', sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
@@ -21,39 +20,65 @@
         }
 
         h3 {
-            font-size: 100px;
-            color: #f44336;
-            margin-bottom: 10px;
+            font-size: 120px;
+            color: #ff5252;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-out;
         }
 
         p {
-            font-size: 18px;
-            color: #ccc;
-            margin-bottom: 40px;
+            font-size: 20px;
+            color: #b0bec5;
+            margin-bottom: 30px;
+            animation: fadeIn 1.5s ease-out;
         }
 
         .btn {
             display: inline-block;
-            padding: 15px 30px;
-            background-color: #f44336;
+            padding: 12px 25px;
+            background-color: #ff5252;
             color: #fff;
             text-decoration: none;
             border-radius: 5px;
             font-size: 18px;
             margin: 10px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
             cursor: pointer;
+            animation: fadeIn 2s ease-out;
         }
 
         .btn:hover {
-            background-color: #d32f2f;
+            background-color: #e53935;
+            transform: translateY(-3px);
         }
 
         .container {
-            max-width: 600px;
+            max-width: 500px;
             padding: 20px;
-            background-color: rgba(0, 0, 0, 0.6);
-            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
     </style>
     <script>
@@ -66,7 +91,7 @@
 <body>
     <div class="container">
         <h3>404</h3>
-        <p>Oops! 找不到页面了。</p>
+        <p>Oops! 找不到页面了。您访问的页面可能已被删除或暂时不可用。</p>
         <a class="btn" href="index.html">返回首页</a>
         <button class="btn" onclick="reloadPage()">重新加载</button>
     </div>

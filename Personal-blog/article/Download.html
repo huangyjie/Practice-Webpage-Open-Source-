@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #343a40;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #495057;
+        }
+        .group-title {
+            font-size: 1.5rem;
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            justify-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .button {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 30px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+        }
+        .button:hover {
+            background-color: #0056b3;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+        .button:active {
+            background-color: #004085;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .green-button {
+            background-color: #28a745;
+        }
+        .green-button:hover {
+            background-color: #218838;
+        }
+        .orange-button {
+            background-color: #ff9800;
+        }
+        .orange-button:hover {
+            background-color: #e68900;
+        }
+        @media (max-width: 600px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Download</h1>
+    <p>Select a file to download:</p>
+
+    <div class="group-title">JetBrains Tools</div>
+    <div class="container">
+        <a href="https://cloud.189.cn/t/MrmqaiQRryiu" class="button">Download WebStorm (提取码 y40f)</a>
+        <a href="https://cloud.189.cn/t/VFveUfMvYbme" class="button">Download PyCharm (提取码 pwf1)</a>
+        <a href="https://cloud.189.cn/t/bmYfE3ZNRN3i" class="button">Download PhpStorm (提取码 9xob)</a>
+        <a href="https://cloud.189.cn/t/bmYfE3ZNRN3i" class="button">Download IntelliJ IDEA (提取码 9xob)</a>
+        <a href="https://cloud.189.cn/t/Qj2yQ3nYBRFf" class="button">Download DataGrip (提取码 i1qa)</a>
+        <a href="https://cloud.189.cn/t/nMJ7RfMviA7n" class="button green-button">Download CLion (提取码 wx4k)</a>
+    </div>
+
+    <div class="group-title">Java Tools</div>
+    <div class="container">
+        <a href="https://cloud.189.cn/t/rqER3mfMRjMf" class="button">Download Java--JER (提取码 c0iy)</a>
+        <a href="https://cloud.189.cn/t/iyi22aA3auUr" class="button">Download Java--JDK (提取码 hc56)</a>
+    </div>
+
+    <div class="group-title">Development Utilities</div>
+    <div class="container">
+        <a href="https://download.bt.cn/win/panel/BtSoft.zip" class="button orange-button">Download 宝塔</a>
+        <a href="https://code.visualstudio.com/docs/?dv=win64user" class="button orange-button">Download VScode</a>
+        <a href="https://visualstudio.microsoft.com/zh-hans/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false" class="button orange-button">Download Visual Studio</a>
+    </div>
+
+</body>
+</html>
