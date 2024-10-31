@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>题库查询系统</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #f5a623;
+            --background-color: #f4f7f9;
+            --text-color: #333;
+            --card-background: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+        }
+
+        .card {
+            background: var(--card-background);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 0.5rem;
+        }
+
+        #result {
+            margin-top: 1rem;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .video-container {
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>题库查询系统</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="popup" id="popup">
+            <div class="popup-content">
+                <h3>请认真阅读以下提示</h3>
+                <p>本网页程序仅供学习使用,不可用作考试作弊等违法行为。如果在使用中发生的任何后果与网页制作者无关。</p>
+                <p>请在阅读完毕后,点击下方按钮关闭弹窗。</p>
+                <button onclick="closePopup()">我已了解</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>题目查询</h2>
+            <form id="queryForm">
+                <input type="text" id="userInput" name="userInput" placeholder="请输入题干" required>
+                <button type="button" onclick="queryDatabase()">查找</button>
+            </form>
+            <p id="errorMessage" class="error-message"></p>
+            <div id="result"></div>
+            <p id="questionCount"></p>
+        </div>
+
+        <div class="card">
+            <h2>添加题目</h2>
+            <form id="addForm">
+                <input type="text" id="question" name="question" placeholder="题干" required>
+                <input type="text" id="optionA" name="optionA" placeholder="选项A" required>
+                <input type="text" id="optionB" name="optionB" placeholder="选项B" required>
+                <input type="text" id="optionC" name="optionC" placeholder="选项C" required>
+                <input type="text" id="optionD" name="optionD" placeholder="选项D" required>
+                <input type="text" id="correctAnswer" name="correctAnswer" placeholder="标准答案" maxlength="1" required>
+                <button type="button" onclick="addData()">添加题目</button>
+            </form>
+            <p id="addMessage" class="error-message"></p>
+        </div>
+        
+
+        <div class="card">
+            <button onclick="downloadFile()">下载题库</button>
+            <button onclick="redirectToOtherPage()">逛一下小黄的博客</button>
+        </div>
+    </div>
+
+    <script src="JS/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'block';
+
+            setTimeout(function() {
+                popup.style.display = 'none';
+            }, 10000);
+        });
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        function redirectToOtherPage() {
+            window.location.href = '../index.html';
+        }
+    </script>
+</body>
+</html>

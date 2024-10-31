@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>留言板 - H's blog circle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../cs/styles.css">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', Arial, sans-serif;
+            background: url('https://picsum.photos/1920/1080') no-repeat center center/cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        h2 {
+            color: #35424a;
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            font-size: 16px;
+            border: 2px solid #d1d9e6;
+            border-radius: 8px;
+            resize: vertical;
+            margin-bottom: 25px;
+            transition: border-color 0.3s ease;
+        }
+
+        textarea:focus {
+            border-color: #e8491d;
+            outline: none;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            background: #e8491d;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: #ff6a3c;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            margin-bottom: 25px;
+        }
+
+        .btn-home {
+            background: #35424a;
+            color: #ffffff;
+        }
+
+        .btn-home:hover {
+            background: #4a5c66;
+        }
+
+        @media(max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>留言板</h2>
+        <form action="submit_message.php" method="post">
+            <textarea name="message" placeholder="请输入您的留言..." required></textarea>
+            <input type="submit" value="提交留言" class="btn btn-submit">
+        </form>
+        <div class="btn-container">
+            <a href="view_message.html" class="btn">查看留言</a>
+            <a href="../index.html" class="btn btn-home">返回首页</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我 - 我的博客</title>
+    <link rel="stylesheet" href="cs/styles.css">
+    <style>
+        /* 联系表单样式 */
+        .contact-form {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            margin-top: 80px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            z-index: 2;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+        }
+
+        .contact-form h2 {
+            color: #35424a;
+            margin-bottom: 20px;
+            font-size: 32px;
+            text-align: center;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+        }
+
+        .contact-form button {
+            background: #e8491d;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background: #ff6a3c;
+        }
+
+        .qq-contact {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .qq-contact p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .contact-button {
+            display: inline-block;
+            background: #e8491d;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .contact-button:hover {
+            background: #ff6a3c;
+            transform: translateY(-2px);
+        }
+
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="navbar">
+                <h1 class="fade-in"><span class="highlight">H's blog</span> circle</h1>
+                <nav>
+                    <ul>
+                        <li class="fade-in"><a href="index.html">首页</a></li>
+                        
+                        <li class="fade-in"><a href="blog.php">博客文章</a></li>
+                        <li class="fade-in"><a href="250/index.html" title="给她的留言">留言板</a></li>
+                        <li class="fade-in"><a href="Questionnaires/index.html" title="调查问卷">调查问卷</a></li>
+                        <li class="fade-in"><a href="ss/jiaz.html">题库查询</a></li>
+                        <li class="current fade-in"><a href="contact.html">联系我</a></li>
+                        <li class="fade-in"><a href="admin/login.php">管理员后台</a></li>
+                        <li class="fade-in"><a href="about.html">关于</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section id="showcase">
+        <div class="contact-form fade-in">
+            <h2>反馈建议</h2>
+            <div class="qq-contact">
+                <p>有问题或建议？你可以通过下面的方式联系我：</p>
+                <div class="contact-buttons">
+                    <a href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1401466869&website=www.oicqzone.com" class="contact-button">添加作者QQ</a>
+                    <a href="mailto:huangyujeiyo@gmail.com" class="contact-button">发送邮件</a>
+                </div>
+            </div>
+            <form id="contactForm">
+                <input type="text" name="name" placeholder="您的称呼" required>
+                <input type="email" name="email" placeholder="您的邮箱" required>
+                <textarea name="suggestion" rows="5" placeholder="您的建议" required></textarea>
+                <button type="submit">提交建议</button>
+            </form>
+            <div id="message"></div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 huang yu jie. 保留所有权利。</p>
+        <p>备案号: <a href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2024077565号</a></p>
+        <p><a href="http://www.beian.gov.cn/" target="_blank"> <img src="备案编号图标.png" alt="公安备案" style="vertical-align:middle;"> 公安备案号：鄂网安备 2024077565号</a></p>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // 阻止表单默认提交
+
+            // 显示"正在提交，请稍等"
+            var messageDiv = document.getElementById('message');
+            messageDiv.textContent = '正在提交，请稍等...';
+
+            // 等待3秒钟后提交表单
+            setTimeout(function() {
+                // 获取表单数据
+                var formData = new FormData(document.getElementById('contactForm'));
+
+                // 使用 fetch API 提交数据
+                fetch('admin/submit_suggestion.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(data => {
+                    // 提交成功后，显示成功消息
+                    messageDiv.textContent = '提交成功！';
+                })
+                .catch(error => {
+                    // 如果出错，显示错误消息
+                    messageDiv.textContent = '提交失败，请重试。';
+                });
+            }, 3000); // 3秒延迟
+        });
+
+        // 添加页面加载完成后的动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const slideInElements = document.querySelectorAll('.slide-in');
+            slideInElements.forEach(element => {
+                element.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

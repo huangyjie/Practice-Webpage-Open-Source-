@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我 - 我的博客</title>
+    <link rel="stylesheet" href="cs/styles.css">
+    <style>
+        .article-content {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            margin-top: 80px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            z-index: 2;
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+        }
+
+        .article-content h1, .article-content h2 {
+            color: #35424a;
+            margin-bottom: 20px;
+        }
+
+        .article-content h1 {
+            font-size: 36px;
+        }
+
+        .article-content h2 {
+            font-size: 24px;
+            margin-top: 30px;
+        }
+
+        .article-content p, .article-content ul {
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .article-content ul {
+            padding-left: 20px;
+        }
+
+        .about-avatar {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .about-avatar img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .learning-path {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+        }
+        .path-item {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        .path-item h3 {
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+        .path-item ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .path-item li {
+            margin-bottom: 5px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .path-item li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #3498db;
+        }
+
+        .collapsible {
+            cursor: pointer;
+            user-select: none;
+        }
+        .collapsible .toggle-icon {
+            float: right;
+            transition: transform 0.3s ease;
+        }
+        .collapsible.active .toggle-icon {
+            transform: rotate(45deg);
+        }
+        .content {
+            display: none;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="navbar">
+                <h1 class="fade-in"><span class="highlight">H's blog</span> circle</h1>
+                <nav>
+                    <ul>
+                        <li class="fade-in"><a href="index.html">首页</a></li>
+                        
+                        <li class="fade-in"><a href="blog.php">博客文章</a></li>
+                        <li class="fade-in"><a href="250/index.html" title="给她的留言">留言板</a></li>
+                        <li class="fade-in"><a href="Questionnaires/index.html" title="调查问卷">调查问卷</a></li>
+                        <li class="fade-in"><a href="ss/jiaz.html">题库查询</a></li>
+                        <li class="fade-in"><a href="contact.html">联系我</a></li>
+                        <li class="fade-in"><a href="admin/login.php">管理员后台</a></li>
+                        <li class="current fade-in"><a href="about.html">关于</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main id="showcase">
+        <article class="article-content fade-in">
+            <div class="about-avatar">
+                <img src="article/Source code/tx.jpg" alt="我的头像">
+            </div>
+            <h1>关于我</h1>
+            <h2>个人介绍</h2>
+            <p>大家好，我是一个热爱编程和写作的大学生，喜欢分享我的经验与见解。我在技术领域有着丰富的经验，并且对最新的技术趋势充满热情。</p>
+
+            <h2>我的学习线路</h2>
+            <div class="learning-path">
+                <div class="path-item">
+                    <h3 class="collapsible">基础编程 <span class="toggle-icon">+</span></h3>
+                    <ul class="content">
+                        <li>C</li>
+                        <li>Python</li>
+                    </ul>
+                </div>
+                <div class="path-item">
+                    <h3 class="collapsible">Web开发基础 <span class="toggle-icon">+</span></h3>
+                    <ul class="content">
+                        <li>HTML/CSS</li>
+                        <li>JavaScript</li>
+                        <li>PHP</li>
+                    </ul>
+                </div>
+                <div class="path-item">
+                    <h3 class="collapsible">数据库 <span class="toggle-icon">+</span></h3>
+                    <ul class="content">
+                        <li>MySQL</li>
+                        <li>Access</li>
+                    </ul>
+                </div>
+                <div class="path-item">
+                    <h3 class="collapsible">高级编程 <span class="toggle-icon">+</span></h3>
+                    <ul class="content">
+                        <li>Java</li>
+                    </ul>
+                </div>
+                <div class="path-item">
+                    <h3 class="collapsible">前端框架 <span class="toggle-icon">+</span></h3>
+                    <ul class="content">
+                        <li>React</li>
+                        <li>Vue.js</li>
+                    </ul>
+                </div>
+                <div class="path-item">
+                    <h3 class="collapsible">后端框架 <span class="toggle-icon">+</span></h3>
+                    <ul class="content">
+                        <li>Django</li>
+                        <li>Node.js</li>
+                    </ul>
+                </div>
+                <div class="path-item">
+                    <h3 class="collapsible">开发工具 <span class="toggle-icon">+</span></h3>
+                    <ul class="content">
+                        <li>Github</li>
+                        <li>Docker</li>
+                        <li>VSCode</li>
+                        <li>Navicat</li>
+                        <li>HBuilder X</li>
+                        <li>Visual Studio</li>
+                        <li>JetBrains工具(CLion, IntelliJ IDEA, DataGrip, WebStorm, PyCharm, PhpStorm)</li>
+                    </ul>
+                </div>
+                <div class="path-item">
+                    <h3 class="collapsible">其他工具 <span class="toggle-icon">+</span></h3>
+                    <ul class="content">
+                        <li>VMware</li>
+                        <li>WPS</li>
+                        <li>MS Office</li>
+                        <li>Photoshop</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <style>
+                .learning-path {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    padding: 20px;
+                    background-color: #f0f0f0;
+                    border-radius: 10px;
+                }
+                .path-item {
+                    background-color: #ffffff;
+                    border-radius: 8px;
+                    padding: 15px;
+                    margin-bottom: 15px;
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                    width: 100%;
+                    max-width: 600px;
+                }
+                .path-item h3 {
+                    color: #3498db;
+                    margin-bottom: 10px;
+                }
+                .path-item ul {
+                    list-style-type: none;
+                    padding-left: 0;
+                }
+                .path-item li {
+                    margin-bottom: 5px;
+                    padding-left: 20px;
+                    position: relative;
+                }
+                .path-item li::before {
+                    content: '→';
+                    position: absolute;
+                    left: 0;
+                    color: #3498db;
+                }
+            </style>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 huang yu jie. 保留所有权利。</p>
+        <p>备案号: <a href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备2024077565号</a></p>
+        <p><a href="http://www.beian.gov.cn/" target="_blank"> <img src="备案编号图标.png" alt="公安备案" style="vertical-align:middle;"> 公安备案号：鄂网安备 2024077565号</a></p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const collapsibles = document.querySelectorAll('.collapsible');
+            
+            collapsibles.forEach(item => {
+                item.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const content = this.nextElementSibling;
+                    if (content.style.display === 'block') {
+                        content.style.display = 'none';
+                    } else {
+                        content.style.display = 'block';
+                    }
+                });
+            });
+
+            // 添加页面加载完成后的动画效果
+            const slideInElements = document.querySelectorAll('.slide-in');
+            slideInElements.forEach(element => {
+                element.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

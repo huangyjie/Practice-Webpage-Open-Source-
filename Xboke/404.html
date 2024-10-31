@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - 页面未找到 | 我的博客</title>
+    <link rel="stylesheet" href="cs/styles.css">
+    <style>
+        .error-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            margin-top: 80px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .error-code {
+            font-size: 120px;
+            color: #e8491d;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .error-message {
+            font-size: 24px;
+            color: #35424a;
+            margin-bottom: 30px;
+        }
+
+        .error-description {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .home-button {
+            display: inline-block;
+            background: #e8491d;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+            cursor: pointer; /* 添加鼠标指针样式 */
+            position: relative; /* 确保z-index生效 */
+            z-index: 10; /* 提高z-index确保按钮可点击 */
+        }
+
+        .home-button:hover {
+            background: #ff6a3c;
+        }
+        .error-image {
+            max-width: 300px;
+            margin: 30px auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="navbar">
+                <h1 class="fade-in"><span class="highlight">我的</span> 博客</h1>
+                <nav>
+                    <ul>
+                        <li class="fade-in"><a href="index.html">首页</a></li>
+                        <li class="fade-in"><a href="about.html">关于</a></li>
+                        <li class="fade-in"><a href="contact.html">联系</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section id="showcase">
+        <div class="error-container fade-in">
+            <div class="error-code">404</div>
+            <div class="error-message">哎呀！页面走丢了</div>
+            <div class="error-description">
+                看来您要找的页面已经迷路了。别担心，这种事情时有发生。
+                <br>不如我们一起回到首页，重新开始探索吧？
+            </div>
+            <img src="https://http.cat/404" alt="404 猫咪图片" class="error-image">
+            <a href="/" class="home-button" onclick="goToHomePage(event)">返回首页</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 huang yu jie. 保留所有权利。</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(element => {
+                element.style.opacity = '1';
+            });
+        });
+
+        function goToHomePage(event) {
+            event.preventDefault(); // 阻止默认行为
+            window.location.href = '/'; // 使用绝对路径跳转到首页
+        }
+    </script>
+</body>
+</html>

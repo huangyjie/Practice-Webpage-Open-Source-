@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线代码编译器</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+            background-color: #e9ecef; /* 更改背景颜色 */
+            color: #343a40; /* 更改字体颜色 */
+        }
+        h1 {
+            text-align: center;
+            color: #007bff; /* 更改标题颜色 */
+        }
+        label {
+            font-weight: bold;
+            color: #495057; /* 更改标签颜色 */
+        }
+        select, button {
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #007bff; /* 更改边框颜色 */
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s, color 0.3s; /* 添加过渡效果 */
+        }
+        select:hover, button:hover {
+            background-color: #007bff; /* 更改悬停颜色 */
+            color: white; /* 更改悬停字体颜色 */
+        }
+        button {
+            background-color: #28a745; /* 更改按钮颜色 */
+            color: white;
+        }
+        button:hover {
+            background-color: #218838; /* 更改按钮悬停颜色 */
+        }
+        .CodeMirror {
+            height: 500px; /* 增加代码框高度 */
+            border: 1px solid #ced4da; /* 更改代码框边框颜色 */
+            border-radius: 5px;
+        }
+        .controls {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .font-size-selector {
+            margin-left: 10px;
+        }
+        #bottom-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        #inputField, #output {
+            width: 48%;
+            height: 150px; /* 减小输入和输出框高度 */
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ced4da; /* 更改输入输出框边框颜色 */
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            overflow-y: auto;
+        }
+        #output {
+            text-align: left;
+            background-color: #f8f9fa; /* 更改输出框背景颜色 */
+        }
+    </style>
+</head>
+<body>
+
+<h1>在线代码编译器</h1>
+
+<div class="controls">
+    <label for="language">选择编程语言：</label>
+    <select id="language">
+        <option value="java">Java</option>
+        <option value="python">Python</option>
+        <option value="javascript">JavaScript</option>
+        <option value="cpp">C++</option>
+        <option value="ruby">Ruby</option>
+        <option value="c">C</option>
+    </select>
+    <label for="fontSize" class="font-size-selector">输出字体大小：</label>
+    <select id="fontSize" onchange="changeFontSize()">
+        <option value="12px">小</option>
+        <option value="16px" selected>中</option>
+        <option value="20px">大</option>
+        <option value="24px">更大</option>
+    </select>
+</div>
+
+<textarea id="code" placeholder="在此输入代码..." oninput="adjustFontSize()"></textarea>
+
+<button onclick="compileCode()">运行代码</button>
+
+<div id="bottom-section">
+    <textarea id="inputField" placeholder="在此输入程序的标准输入内容..."></textarea>
+    <div id="output">输出结果将在此显示</div>
+</div>
+
+<!-- 引入 CodeMirror -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/python/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/javascript/javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/clike/clike.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/ruby/ruby.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/addon/hint/show-hint.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/addon/hint/show-hint.min.css">
+
+<script>
+    // 示例代码
+    const exampleCodes = {
+        python: `# 这是一个简单的Python程序\n\nprint("Hello, World!")\n`,
+        javascript: `// 这是一个简单的JavaScript程序\n\nconsole.log("Hello, World!");\n`,
+        cpp: `// 这是一个简单的C++程序\n#include <iostream>\n\nint main() {\n    std::cout << "Hello, World!";\n    return 0;\n}\n`,
+        java: `// 这是一个简单的Java程序\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello, World!");\n    }\n}\n`,
+        ruby: `# 这是一个简单的Ruby程序\n\nputs "Hello, World!"\n`,
+        c: `// 这是一个简单的C程序\n#include <stdio.h>\n\nint main() {\n    printf("Hello, World!");\n    return 0;\n}\n`
+    };
+
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        mode: "text/x-java",
+        theme: "default",
+        extraKeys: {
+            "Ctrl-Space": "autocomplete",
+            "Tab": function(cm) { cm.execCommand("insertSoftTab"); },
+        },
+        hintOptions: {
+            tables: {}
+        }
+    });
+
+    document.getElementById("language").addEventListener("change", function() {
+        var mode = "text/x-java";
+        switch (this.value) {
+            case "python":
+                mode = "text/x-python";
+                break;
+            case "javascript":
+                mode = "text/javascript";
+                break;
+            case "cpp":
+                mode = "text/x-c++src";
+                break;
+            case "ruby":
+                mode = "text/x-ruby";
+                break;
+            case "c":
+                mode = "text/x-csrc";
+                break;
+        }
+        editor.setOption("mode", mode);
+        editor.setValue(exampleCodes[this.value]); // 设置示例代码
+    });
+
+    // 设置初始示例代码
+    editor.setValue(exampleCodes["java"]);
+
+    async function compileCode() {
+        const language = document.getElementById("language").value;
+        const code = editor.getValue();
+        const input = document.getElementById("inputField").value;
+        const outputElement = document.getElementById("output");
+        outputElement.innerHTML = "正在运行，请稍候...";
+
+        try {
+            const response = await fetch("/compile", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ language, code, input })
+            });
+            const result = await response.json();
+            outputElement.innerHTML = result.output || "执行出错";
+        } catch (error) {
+            outputElement.innerHTML = "发生错误：" + error.message;
+        }
+    }
+
+    function changeFontSize() {
+        const selectedSize = document.getElementById("fontSize").value;
+        document.getElementById("output").style.fontSize = selectedSize;
+        editor.getWrapperElement().style.fontSize = selectedSize;
+    }
+
+    function adjustFontSize() {
+        const fontSize = document.getElementById("fontSize").value;
+        editor.getWrapperElement().style.fontSize = fontSize;
+    }
+</script>
+</body>
+</html>
