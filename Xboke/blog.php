@@ -123,7 +123,7 @@ $result = $conn->query($sql);
                 <h1 class="fade-in"><span class="highlight">H's blog</span> circle</h1>
                 <nav>
                     <ul>
-                        <li class="fade-in"><a href="index.html">首页</a></li>
+                        <li class="fade-in"><a href="index.php">首页</a></li>
                         <li class="current fade-in"><a href="#">博客文章</a></li>
                         <li class="fade-in"><a href="250/index.html" title="给她的留言">留言板</a></li>
                         <li class="fade-in"><a href="Questionnaires/index.html" title="调查问卷">调查问卷</a></li>

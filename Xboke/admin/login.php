@@ -269,7 +269,7 @@ $conn->close();
             <button type="submit">登录</button>
         </form>
         <div class="back-link">
-            <a href="../index.html"><i class="fas fa-arrow-left"></i> 返回主页</a>
+            <a href="../index.php"><i class="fas fa-arrow-left"></i> 返回主页</a>
         </div>
     </div>
 </body>

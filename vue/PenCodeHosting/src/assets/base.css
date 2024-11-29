@@ -1,0 +1,35 @@
+/* color palette */
+:root {
+  --color-background: var(--color-bg-1);
+  --color-background-soft: var(--color-bg-2);
+  --color-background-mute: var(--color-fill-2);
+  --color-background-hover: var(--color-fill-1);
+  
+  --color-heading: var(--color-text-1);
+  --color-text: var(--color-text-2);
+  --color-text-soft: var(--color-text-3);
+  
+  --section-gap: 160px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--color-text);
+  background: var(--color-background);
+  transition: color 0.5s, background-color 0.5s;
+  line-height: 1.6;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-size: 15px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+} 
