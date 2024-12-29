@@ -1,10 +1,14 @@
+<?php
+require_once 'includes/header.php';
+?>
 <!DOCTYPE html>
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>H's blog circle</title>
+    <title>首页 - 我的博客</title>
     <link rel="stylesheet" href="cs/styles.css">
+    <link rel="stylesheet" href="cs/nav.css">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -12,48 +16,6 @@
             color: #333;
             margin: 0;
             padding: 0;
-        }
-
-        header {
-            background-color: rgba(53, 66, 74, 0.9);
-            color: #ffffff;
-            padding: 20px 0;
-            text-align: center;
-            position: relative;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
-
-        nav {
-            position: absolute;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
-
-        nav ul li a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        nav ul li a:hover {
-            color: #e8491d;
         }
 
         #showcase {
@@ -80,8 +42,10 @@
         .showcase-content {
             z-index: 2;
             padding: 2rem;
+            padding-bottom: 4rem;
             border-radius: 10px;
             background: rgba(0, 0, 0, 0.7);
+            position: relative;
         }
 
         .showcase-content h1 {
@@ -167,7 +131,20 @@
             border-top: 20px solid #ffffff;
             cursor: pointer;
             transition: transform 0.3s ease;
-            z-index: 1000;
+            z-index: 2;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
         }
 
         .triangle-down:hover {
@@ -176,29 +153,15 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1 class="fade-in"><span class="highlight">H's blog</span> circle</h1>
-            <nav>
-                <ul>
-                    <li><a href="index.php">首页</a></li>
-                    <li><a href="blog.php">博客文章</a></li>
-                    <li><a href="250/index.html" title="给她的留言">留言板</a></li>
-                    <li><a href="Questionnaires/index.html" title="调查问卷">调查问卷</a></li>
-                    <li><a href="contact.html">联系我</a></li>
-                    <li><a href="admin/login.php">管理员后台</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
+    <div id="header-container"></div>
+    
     <section id="showcase">
         <div class="showcase-content">
             <h1>欢迎来到我的博客</h1>
             <p>这里是我分享想法和经验的地方</p>
             <p id="current-time"></p>
+            <div class="triangle-down" onclick="scrollToBottom()"></div>
         </div>
-        <div class="triangle-down" onclick="scrollToBottom()"></div>
     </section>
 
     <div class="container">
@@ -272,6 +235,13 @@
             fadeElements.forEach(element => {
                 element.style.opacity = '1';
             });
+        });
+    </script>
+    <script src="js/nav-component.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const nav = new NavBar();
+            nav.loadNav('home');
         });
     </script>
 </body>

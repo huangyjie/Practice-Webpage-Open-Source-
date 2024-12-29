@@ -1,0 +1,13 @@
+/* 将原来styles.css中的header相关样式移到这里 */
+header {
+    background: rgba(53, 66, 74, 0.8);
+    color: #ffffff;
+    padding: 1rem 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+/* 其他header相关样式... */ 
